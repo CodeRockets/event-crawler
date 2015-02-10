@@ -1,0 +1,8 @@
+config.json
+eferhatg-aws.pem
+eferhatg-aws.ppk
+config/dev.conf
+config/prod.conf
+*.exe
+*.db
+
