@@ -24,7 +24,7 @@ func UpdateVenueBxUrlByFsId(db *sql.DB, fsId string, bxUrl string) (sql.Result, 
 
 func InsertEvent(db *sql.DB, bxevent BxEvent) (sql.Result, error) {
 
-	return db.Exec("INSERT INTO event (venue_id,event_name,bx_event_link,created_at,updated_at,status,event_image,bx_event_id,event_desc,event_price,event_date_start,purchase_link) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)",
+	return db.Exec("INSERT INTO event (venue_id,event_name,bx_event_link,created_at,updated_at,status,event_image,bx_event_id,event_desc,event_price,event_date_start,purchase_link,price_list,tag_list) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)",
 		bxevent.VenueId,
 		bxevent.Name,
 		bxevent.BxLink,
@@ -36,7 +36,9 @@ func InsertEvent(db *sql.DB, bxevent BxEvent) (sql.Result, error) {
 		bxevent.EventDesc,
 		bxevent.EventPrice,
 		bxevent.EventDateStart,
-		bxevent.PurchaseLink)
+		bxevent.PurchaseLink,
+		bxevent.PriceList,
+		bxevent.TagList)
 }
 
 //Deleting venue by fs_id

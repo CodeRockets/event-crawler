@@ -70,6 +70,7 @@ func testInsertEvent(t *testing.T, db *sql.DB) {
 		EventPrice:     "test-eventprice",
 		Name:           "test-eventName",
 		VenueId:        148,
+		PriceList:      "{10.22,11.12}",
 	}
 
 	result, err := InsertEvent(db, bxEvent)

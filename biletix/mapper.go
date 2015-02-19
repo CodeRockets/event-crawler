@@ -68,6 +68,21 @@ func eventMapper(link string, doc *goquery.Document) BxEvent {
 		}
 	})
 	eventprice = "[" + strings.TrimSuffix(eventprice, ",") + "]"
+
+	//price_list
+	r, _ = regexp.Compile("(?:\\d*\\.)?\\d+")
+	prices := r.FindAllString(eventprice, -1)
+	priceList := "{" + strings.Join(prices, ", ") + "}"
+
+	//tag_list
+	var tags string
+	tags = ""
+	doc.Find("#EventBrdCrumb a").Each(func(i int, s *goquery.Selection) {
+		tags += strings.TrimSpace(s.Text()) + ","
+
+	})
+	tagList := "{" + strings.TrimSuffix(tags, ",") + "}"
+
 	eventName := doc.Find(".eventname a #eventnameh1 span").Text()
 
 	desc := doc.Find(".innerslide p").Text()
@@ -81,5 +96,7 @@ func eventMapper(link string, doc *goquery.Document) BxEvent {
 		PurchaseLink:   purchaseLink,
 		EventPrice:     eventprice,
 		Name:           eventName,
+		PriceList:      priceList,
+		TagList:        tagList,
 	}
 }

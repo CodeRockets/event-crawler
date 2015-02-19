@@ -15,10 +15,10 @@ func TestService(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Fail on parsing config file %s", err)
 	}
-	testCrawlVenue(t)
-	testCrawlVenueOfWrongUrl(t)
+	/*	testCrawlVenue(t)
+		testCrawlVenueOfWrongUrl(t)*/
 	testCrawlEvent(t)
-	testCrawlEventOfWrongUrl(t)
+	/*	testCrawlEventOfWrongUrl(t)*/
 
 }
 
@@ -40,7 +40,7 @@ func testCrawlVenueOfWrongUrl(t *testing.T) {
 }
 
 func testCrawlEvent(t *testing.T) {
-	bxevent, err := CrawlEvent("http://www.biletix.com/etkinlik/SLVM2/ISTANBUL/tr")
+	bxevent, err := CrawlEvent("http://www.biletix.com/etkinlik/SKPO2/TURKIYE/tr")
 	if err != nil {
 		t.Fatalf("Fail on crawling biletix data, Error: %s", err)
 	}

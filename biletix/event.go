@@ -15,4 +15,6 @@ type BxEvent struct {
 	EventPrice     string
 	EventDateStart time.Time
 	PurchaseLink   string
+	PriceList      string
+	TagList        string
 }
