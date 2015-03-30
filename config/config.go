@@ -17,4 +17,6 @@ var (
 	GoogleCSEEndpoint = config.String("google.cse_endpoint", "")
 	GoogleCSEApiKey   = config.String("google.cse_apikey", "")
 	GoogleCSEAppCsx   = config.String("google.cse_appcsx", "")
+	FbApiEndpoint     = config.String("facebook.fb_endpoint", "")
+	FbApiAccessToken  = config.String("facebook.fb_accesstoken", "")
 )

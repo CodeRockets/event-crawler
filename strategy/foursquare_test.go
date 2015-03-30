@@ -22,14 +22,14 @@ func TestFsGetWithBxLink(t *testing.T) {
 	}
 	db, err := sql.Open("postgres", *c.DbConStr)
 	msgs := make(chan string)
-	quit := make(chan struct{ error })
+	quit := make(chan string)
 	go FsGetWithBxLink(msgs, quit, db, "52851e6f498e516d31b588d1", "http://www.biletix.com/mekan/09/TURKIYE/tr")
 	for {
 		select {
 		case s := <-msgs:
 			fmt.Printf("'%s'\n", s)
 		case err := <-quit:
-			if err.error != nil {
+			if err != "" {
 				t.Errorf("Error on FsGetWithBxLink strategy Error:", err)
 			}
 			fmt.Println("Done")
@@ -47,14 +47,14 @@ func TestFsGetWithGoogleCSE(t *testing.T) {
 	}
 	db, err := sql.Open("postgres", *c.DbConStr)
 	msgs := make(chan string)
-	quit := make(chan struct{ error })
+	quit := make(chan string)
 	go FsGetWithGCSE(msgs, quit, db, "52851e6f498e516d31b588d1")
 	for {
 		select {
 		case s := <-msgs:
 			fmt.Printf("'%s'\n", s)
 		case err := <-quit:
-			if err.error != nil {
+			if err != "" {
 				t.Errorf("Error on FsGetWithBxLink strategy Error:", err)
 			}
 			fmt.Println("Done")

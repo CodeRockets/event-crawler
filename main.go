@@ -27,6 +27,7 @@ func main() {
 	fsgetPtr := flag.String("fsget", "foursquareid", "Foursquare id for getting venue info.")
 	bxslinkPtr := flag.String("bxslink", "bxvenuelink", "Biletix venue link. Should be used with fsget.")
 	gcsePtr := flag.Bool("gcse", false, "Use Google CSE?")
+	fbpagePtr := flag.String("fbpage", "fbpageid", "Facebook id for getting venue info.")
 
 	if len(os.Args) <= 1 {
 		os.Args = append(os.Args, "-help")
@@ -55,6 +56,10 @@ func main() {
 		fmt.Println("Google Search Engine Biletix Strategy Started")
 		strategyflag = true
 		go s.FsGetWithGCSE(msgs, quit, db, *fsgetPtr)
+	case *fbpagePtr != "fbpageid":
+		fmt.Println("Manuel Biletix Strategy Started")
+		strategyflag = true
+		go s.FbCallPageApi(msgs, quit, db, *fbpagePtr)
 	}
 	if strategyflag {
 		for {
